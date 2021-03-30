@@ -8,7 +8,8 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
 COPY ["BuildPipeEditDockerProject.csproj", ""]
 RUN dotnet restore "./BuildPipeEditDockerProject.csproj"
-COPY . .WORKDIR "/src/."
+COPY . .
+WORKDIR "/src/."
 RUN dotnet build "BuildPipeEditDockerProject.csproj" -c Release -o /app/build
 
 FROM build AS publish
